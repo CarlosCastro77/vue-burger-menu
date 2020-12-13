@@ -4,12 +4,21 @@
       <nav class="bm-item-list">
         <slot></slot>
       </nav>
-      <span class="bm-cross-button cross-style" @click="closeMenu" :class="{ hidden: !crossIcon }">
+      <span
+        class="bm-cross-button cross-style"
+        @click="closeMenu"
+        :class="{ hidden: !crossIcon }"
+      >
         <span
           v-for="(x, index) in 2"
           :key="x"
           class="bm-cross"
-          :style="{ position: 'absolute', width: '3px', height: '14px',transform: index === 1 ? 'rotate(45deg)' : 'rotate(-45deg)'}"
+          :style="{
+            position: 'absolute',
+            width: '3px',
+            height: '14px',
+            transform: index === 1 ? 'rotate(45deg)' : 'rotate(-45deg)',
+          }"
         ></span>
       </span>
     </div>
@@ -22,7 +31,7 @@
     >
       <span
         class="bm-burger-bars line-style"
-        :style="{top:20 * (index * 2) + '%'}"
+        :style="{ top: 20 * (index * 2) + '%' }"
         v-for="(x, index) in 3"
         :key="index"
       ></span>
@@ -35,55 +44,55 @@ export default {
   name: "menubar",
   data() {
     return {
-      isSideBarOpen: false
+      isSideBarOpen: false,
     };
   },
   props: {
     isOpen: {
       type: Boolean,
-      required: false
+      required: false,
     },
     right: {
       type: Boolean,
-      required: false
+      required: false,
     },
     width: {
       type: [String],
       required: false,
-      default: "300"
+      default: "300",
     },
     disableEsc: {
       type: Boolean,
-      required: false
+      required: false,
     },
     noOverlay: {
       type: Boolean,
-      required: false
+      required: false,
     },
     onStateChange: {
       type: Function,
-      required: false
+      required: false,
     },
     burgerIcon: {
       type: Boolean,
       required: false,
-      default: true
+      default: true,
     },
     crossIcon: {
       type: Boolean,
       required: false,
-      default: true
+      default: true,
     },
     disableOutsideClick: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
     closeOnNavigation: {
       type: Boolean,
       required: false,
-      default: false
-    }
+      default: false,
+    },
   },
   methods: {
     openMenu() {
@@ -97,7 +106,7 @@ export default {
         this.$refs.sideNav.style.left = "auto";
         this.$refs.sideNav.style.right = "0px";
       }
-      this.$nextTick(function() {
+      this.$nextTick(function () {
         this.$refs.sideNav.style.width = this.width
           ? this.width + "px"
           : "300px";
@@ -150,7 +159,7 @@ export default {
         element = element.parentNode;
       } while (element);
       return false;
-    }
+    },
   },
 
   mounted() {
@@ -158,10 +167,10 @@ export default {
       document.addEventListener("keyup", this.closeMenuOnEsc);
     }
   },
-  created: function() {
+  created: function () {
     document.addEventListener("click", this.documentClick);
   },
-  destroyed: function() {
+  destroyed: function () {
     document.removeEventListener("keyup", this.closeMenuOnEsc);
     document.removeEventListener("click", this.documentClick);
   },
@@ -178,7 +187,7 @@ export default {
             this.closeMenu();
           }
         });
-      }
+      },
     },
     right: {
       deep: true,
@@ -208,9 +217,9 @@ export default {
             document.querySelector(".cross-style").style.right = "0px";
           }
         }
-      }
-    }
-  }
+      },
+    },
+  },
 };
 </script>
 
@@ -226,13 +235,13 @@ html {
   left: 26px;
   top: 26px;
   cursor: pointer;
-  color: #4a5a69;
+  color: #1f7699;
 }
 .bm-burger-button.hidden {
   display: none;
 }
 .bm-burger-bars {
-  background-color: #4a5a69;
+  background-color: #1f7699;
 }
 .line-style {
   position: absolute;
@@ -263,7 +272,7 @@ html {
   z-index: 1000; /* Stay on top */
   top: 0;
   left: 0;
-  background-color: #4a5a69; /* Black*/
+  background-color: #1f7699; /* Black*/
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 60px; /* Place content 60px from the top */
   transition: 0.5s;
